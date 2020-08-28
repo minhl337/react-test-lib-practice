@@ -43,4 +43,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-https://www.youtube.com/watch?v=ZmVBCpefQe8&list=WL&index=2&t=276s
+https://www.youtube.com/watch?v=ZmVBCpefQe8&list=WL&index=2&t=2288s
