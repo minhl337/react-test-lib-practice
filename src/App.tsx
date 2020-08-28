@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+interface ItemNode {
+  text: string;
+  id: number;
+}
+
+export const App: React.FC = () => {
+  const [items, setItems] = React.useState<ItemNode[]>([]);
+  const [text, setText] = React.useState<string>('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setText(e.target.value);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!text.length) {
+      return;
+    }
+
+    const newItem = {
+      text,
+      id: Date.now(),
+    };
+
+    setText('');
+    setItems([...items, newItem]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>TODOS</h1>
+
+      <ul>
+        {items.map((item: any) => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor='new-todo'>What needs to be done?</label>
+        <br />
+        <input id='new-todo' value={text} onChange={handleChange} />
+        <button>Add #{items.length + 1}</button>
+      </form>
     </div>
   );
-}
+};
 
 export default App;
