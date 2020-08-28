@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { api } from './api';
+
 interface ItemNode {
   text: string;
   id: number;
@@ -24,8 +26,10 @@ export const App: React.FC = () => {
       id: Date.now(),
     };
 
-    setText('');
-    setItems([...items, newItem]);
+    api.createItem('/items', newItem).then((persistedItem) => {
+      setText('');
+      setItems([...items, newItem]);
+    });
   };
 
   return (
